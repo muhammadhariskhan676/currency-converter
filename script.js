@@ -176,46 +176,70 @@ const countries = [
 ];
 
 // showing countries from array to select tag
-countries.forEach(country => {
-    const option1 = document.createElement('option');
-    const option2 = document.createElement('option');
+// Populate currency dropdowns
+function populateCurrencies() {
+    countries.forEach(({ code, name }) => {
+        const fromOption = new Option(`${code} (${name})`, code);
+        const toOption = new Option(`${code} (${name})`, code);
 
-    option1.value = option2.value = country.code;
-    option1.textContent =  option2.textContent = `${country.code} (${country.name})`;
-    fromCurrencyElement.appendChild(option1);
-    toCurrencyElement.appendChild(option2);
+        fromCurrencyElement.add(fromOption);
+        toCurrencyElement.add(toOption);
+    });
 
-    // showing by defaul value
     fromCurrencyElement.value = "USD";
     toCurrencyElement.value = "PKR";
-});
-//  Function to get Exchange rate
-const getExchangeRate = async () => {
-    const amount = parseFloat(fromAmountElement.value);
-    const fromCurrency = fromCurrencyElement.value;
-    const toCurrency = toCurrencyElement.value;
-    resultElement.textContent = "Fetching Exchange rate...";
-    try {
-    // Fetch data from APi
-    const response =await fetch(`https://api.exchangerate-api.com/v4/latest/${fromCurrency}`);
-    const data = await response.json();
-    const conversionRate = data.rates[toCurrency];
-    const convertedAmount = (amount * conversionRate).toFixed(2);
-    if(typeof conversionRate === 'undefined'){
-            resultElement.textContent = "Exchange rate data is not available for selected country";
-            convertedAmountElement = "";
-    }else{
- convertedAmountElement.value = convertedAmount;
-    resultElement.textContent = `${amount} ${fromCurrency} = ${convertedAmount} ${toCurrency}`;
-    }
-    } catch (error) {
-        converterContainer.innerHTML = `<h1>Error While fetching exchange rates!!!</h1>`;
+}
+
+// Fetch exchange rate
+async function getExchangeRate() {
+    const amount = Number(fromAmountElement.value);
+
+    if (amount <= 0 || isNaN(amount)) {
+        convertedAmountElement.value = "";
+        resultElement.textContent = "Please enter a valid amount.";
+        return;
     }
 
+    resultElement.textContent = "Loading latest exchange rate...";
+
+    try {
+        const response = await fetch(
+            `https://api.exchangerate-api.com/v4/latest/${fromCurrencyElement.value}`
+        );
+
+        if (!response.ok) {
+            throw new Error("Unable to fetch exchange rates.");
+        }
+
+        const data = await response.json();
+        const rate = data.rates[toCurrencyElement.value];
+
+        if (rate === undefined) {
+            convertedAmountElement.value = "";
+            resultElement.textContent =
+                "Exchange rate is not available for the selected currency.";
+            return;
+        }
+
+        const convertedAmount = (amount * rate).toFixed(2);
+
+        convertedAmountElement.value = convertedAmount;
+        resultElement.textContent =
+            `${amount} ${fromCurrencyElement.value} = ${convertedAmount} ${toCurrencyElement.value}`;
+
+    } catch (error) {
+        console.error(error);
+        convertedAmountElement.value = "";
+        resultElement.textContent =
+            "Failed to load exchange rates. Please try again.";
+    }
 }
-// fetching Exchange rate when user input the amount
-fromAmountElement.addEventListener('input', getExchangeRate);
-// // fetching Exchange rate when user change currency
-fromCurrencyElement.addEventListener('change', getExchangeRate);
-toCurrencyElement.addEventListener('change', getExchangeRate);
-window.addEventListener('load', getExchangeRate);
+
+// Initialize App
+populateCurrencies();
+getExchangeRate();
+
+// Events
+fromAmountElement.addEventListener("input", getExchangeRate);
+fromCurrencyElement.addEventListener("change", getExchangeRate);
+toCurrencyElement.addEventListener("change", getExchangeRate);
