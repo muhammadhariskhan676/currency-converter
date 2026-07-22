@@ -4,6 +4,7 @@ const fromCurrencyElement = document.querySelector('.fromCurrency');
 const toCurrencyElement = document.querySelector('.toCurrency');
 const resultElement = document.querySelector('.result');
 const converterContainer = document.querySelector('.converter-container');
+const swapButton = document.querySelector(".swap-icon");
 
 // Array to populate the select tags with these countries
 const countries = [
@@ -189,6 +190,19 @@ function populateCurrencies() {
     fromCurrencyElement.value = "USD";
     toCurrencyElement.value = "PKR";
 }
+
+// Swap currencies
+swapButton.addEventListener("click", () => {
+
+    const tempCurrency = fromCurrencyElement.value;
+    fromCurrencyElement.value = toCurrencyElement.value;
+    toCurrencyElement.value = tempCurrency;
+
+    const tempAmount = fromAmountElement.value;
+    fromAmountElement.value = convertedAmountElement.value || tempAmount;
+
+    getExchangeRate();
+});
 
 // Fetch exchange rate
 async function getExchangeRate() {
