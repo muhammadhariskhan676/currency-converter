@@ -110,21 +110,6 @@ body{
     cursor:pointer;
 }
 
-.arrow{
-    margin:18px 0;
-    font-size:42px;
-    color:#fff;
-    animation:bounce 2s infinite;
-}
-
-@keyframes bounce{
-    0%,100%{
-        transform:translateY(0);
-    }
-    50%{
-        transform:translateY(8px);
-    }
-}
 
 .result{
     margin-top:25px;
@@ -143,30 +128,31 @@ body{
     transform:scale(1.03);
 }
 
-button{
-    width:100%;
-    margin-top:20px;
-    padding:14px;
-    border:none;
-    border-radius:14px;
-    background:linear-gradient(135deg,#ff512f,#dd2476);
+.swap-icon{
+    width:60px;
+    height:60px;
+    margin:20px auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%;
+    background:linear-gradient(135deg,#4facfe,#0072ff);
     color:#fff;
-    font-size:18px;
-    font-weight:600;
+    font-size:28px;
     cursor:pointer;
-    transition:.3s;
-    box-shadow:0 8px 20px rgba(221,36,118,.35);
+    user-select:none;
+    transition:.35s;
+    box-shadow:0 10px 25px rgba(0,114,255,.35);
 }
 
-button:hover{
-    transform:translateY(-3px);
-    box-shadow:0 15px 30px rgba(221,36,118,.45);
+.swap-icon:hover{
+    transform:rotate(180deg) scale(1.08);
+    box-shadow:0 15px 35px rgba(0,114,255,.45);
 }
 
-button:active{
-    transform:scale(.98);
+.swap-icon:active{
+    transform:scale(.95);
 }
-
 /* Scrollbar */
 
 ::-webkit-scrollbar{
