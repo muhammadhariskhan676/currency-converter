@@ -3,36 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
     <link rel="stylesheet" href="style.css">
-    <title>Currency Converter App</title>
 </head>
 <body>
-    <main>
-        <section>
-            <div class="converter-container">
-                <h1>Currency Converter</h1>
-                <div class="input-container">
-                    <input type="number" value="1" min="1" class="amount">
-                    <select class="fromCurrency" >
-                      
-                    </select>
-                </div>
-                <div class="arrow">
-                ➜
-                </div>
-                <div class="input-container">
-                    <input type="number" class="convertedAmount" disabled>
-                    <select class="toCurrency" >
-                        
-                    </select>
-                </div>
-                <div class="result">1 USD = 280.74PKR</div>
-            </div>
-        </section>
-    </main>
-    
 
+    <main class="app">
+
+        <section class="converter-container">
+
+            <h1>Currency Converter</h1>
+            <p class="subtitle">
+                Convert currencies instantly using live exchange rates.
+            </p>
+
+            <!-- From Currency -->
+            <div class="input-container">
+
+                <input
+                    type="number"
+                    class="amount"
+                    min="1"
+                    value="1"
+                    placeholder="Enter Amount"
+                >
+
+                <select class="fromCurrency"></select>
+
+            </div>
+
+            <!-- Swap Icon -->
+            <div class="swap-icon" title="Swap Currencies">
+                ⇅
+            </div>
+
+            <!-- To Currency -->
+            <div class="input-container">
+
+                <input
+                    type="number"
+                    class="convertedAmount"
+                    placeholder="Converted Amount"
+                    disabled
+                >
+
+                <select class="toCurrency"></select>
+
+            </div>
+
+            <!-- Result -->
+            <div class="result">
+                1 USD = 280.74 PKR
+            </div>
+
+            <!-- Last Updated -->
+            <p class="updated-time">
+                Exchange rate updates automatically.
+            </p>
+
+        </section>
+
+    </main>
 
     <script src="script.js"></script>
+
 </body>
 </html>
