@@ -1,0 +1,112 @@
+# Currency Converter
+
+A modern and responsive Currency Converter web application that provides real-time exchange rates for multiple international currencies. Built with HTML, CSS, and JavaScript using a live Exchange Rate API.
+
+---
+
+## Preview
+
+> 
+
+![Currency Converter Screenshot](assets/screenshot.png)
+
+---
+
+## Live Demo
+
+https://haris786-currency-converter.vercel.app/
+---
+
+##  Features
+
+-  Convert between 150+ currencies
+-  Real-time exchange rates
+-  One-click currency swap
+-  Clean and modern user interface
+-  Fully responsive design
+-  Fast conversion results
+-  Glassmorphism design
+-  Smooth animations
+-  Automatic exchange rate updates
+-  Deployed on Vercel
+
+---
+
+##  Built With
+
+- HTML5
+- CSS3
+- JavaScript (ES6)
+- ExchangeRate API
+- Font Awesome
+
+---
+
+##  Project Structure
+
+```text
+Currency-Converter/
+│
+├── favicon.png
+├── screenshot.png 
+│
+├── index.html
+├── style.css
+├── script.js
+└── README.md
+```
+
+---
+
+## Getting Started
+
+### Clone Repository
+
+```bash
+git clone https://github.com/your-username/currency-converter.git
+```
+
+### Open Project
+
+Simply open the project folder and run **index.html** in your browser.
+
+---
+
+## Screenshots
+
+### Home Page
+
+![Home](assets/screenshot.png)
+
+---
+
+## Future Improvements
+
+- Currency flags
+- Dark/Light mode
+- Conversion history
+- Favorite currencies
+- Searchable currency dropdown
+- Copy result button
+- Offline support
+- Charts for exchange rate trends
+
+---
+
+##  Author
+
+**Muhammad Haris Khan**
+
+- GitHub: https://github.com/muhammadhariskhan676
+
+---
+
+## Support
+
+If you like this project, don't forget to **Star** the repository.
+
+---
+
+## 📄 License
+
+This project is open source and available under the MIT License.
